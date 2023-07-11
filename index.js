@@ -36,3 +36,10 @@ app.post("/api/customers", (req, res) => {
     customers.push(customer);
     res.send(customers);
 });
+
+// Put Method
+app.put("api/customers/:id", (req, res) => {
+    const customer = customers.find((c) => c.id === parseInt(req.params.id));
+    customer.title = req.body.title;
+    res.send(customer);
+});
