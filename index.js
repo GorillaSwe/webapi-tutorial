@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+app.use(express.json());
 
 app.listen(3000, console.log("サーバーが開始"));
 
@@ -24,4 +25,14 @@ app.get("/api/customers", (req, res) => {
 app.get("/api/customers/:id", (req,res) => {
     const customer = customers.find((c) => c.id === parseInt(req.params.id));
     res.send(customer);
+});
+
+// Post Method
+app.post("/api/customers", (req, res) => {
+    const customer = {
+        id: customers.length + 1,
+        title: req.body.title,
+    } ;
+    customers.push(customer);
+    res.send(customers);
 });
